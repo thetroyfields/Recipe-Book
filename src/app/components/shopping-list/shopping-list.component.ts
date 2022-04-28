@@ -6,21 +6,21 @@ import { ShoppingListService } from './shopping-list.service';
 @Component({
   selector: 'app-shopping-list',
   templateUrl: './shopping-list.component.html',
-  styleUrls: ['./shopping-list.component.css']
+  styleUrls: ['./shopping-list.component.css'],
 })
 export class ShoppingListComponent implements OnInit, OnDestroy {
-
   ingredients: Ingredient[];
   private ingredientsSub: Subscription;
 
-  constructor(private shoppingListService: ShoppingListService) { }
+  constructor(private shoppingListService: ShoppingListService) {}
 
   ngOnInit() {
     this.ingredients = this.shoppingListService.getList();
     this.ingredientsSub = this.shoppingListService.ingredientsChanged.subscribe(
       (ingredients: Ingredient[]) => {
         this.ingredients = ingredients;
-      })
+      }
+    );
   }
 
   editItem(index: number) {
@@ -30,5 +30,4 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.ingredientsSub.unsubscribe();
   }
-
 }

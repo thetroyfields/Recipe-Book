@@ -6,28 +6,33 @@ import { DataStorageService } from '../shared/data-storage.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent implements OnInit, OnDestroy{
-  
+export class HeaderComponent implements OnInit, OnDestroy {
   isLoggedIn = false;
   private userSub: Subscription;
   collapsed = true;
-  
-  constructor(private dataStorageService: DataStorageService,
-          private authService: AuthService) { }
+
+  constructor(
+    private dataStorageService: DataStorageService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
-    this.userSub = this.authService.user.subscribe(user => {
+    this.userSub = this.authService.user.subscribe((user) => {
       this.isLoggedIn = !user ? false : true;
     });
   }
-  onSaveData(){
+  onSaveData() {
     this.dataStorageService.storeRecipes();
   }
 
-  onFetchData(){ 
+  onFetchData() {
     this.dataStorageService.fetchRecipes().subscribe();
+  }
+
+  onLogout() {
+    this.authService.logout();
   }
 
   ngOnDestroy() {

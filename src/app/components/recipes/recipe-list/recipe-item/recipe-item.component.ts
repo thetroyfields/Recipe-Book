@@ -6,11 +6,11 @@ import { Recipe } from '../../recipe.model';
   templateUrl: './recipe-item.component.html',
   styleUrls: ['./recipe-item.component.css']
 })
-export class RecipeItemComponent implements OnInit {
+export class RecipeItemComponent implements OnInit{
 
   @Input() recipeItem: Recipe;
   @Input() index: number;
-
-  ngOnInit(): void {
-  }
+ ngOnInit(){
+   
+ }
 }

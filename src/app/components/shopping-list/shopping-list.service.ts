@@ -3,20 +3,19 @@ import { Subject } from 'rxjs';
 import { Ingredient } from '../shared/ingredient.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ShoppingListService {
-
   ingredientsChanged = new Subject<Ingredient[]>();
   editItem = new Subject<number>();
 
   private ingredients: Ingredient[] = [
     new Ingredient('Chips', 30),
     new Ingredient('Ground Beef', 1),
-    new Ingredient('Cheese', 5)
+    new Ingredient('Cheese', 5),
   ];
-  
-  constructor() { }
+
+  constructor() {}
 
   getList() {
     return this.ingredients.slice();
